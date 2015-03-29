@@ -44,4 +44,7 @@ type <optional>: one of pie or donut (defaults to *pie*)
 
 ![Example Pie Chart](example-pie.png)
 
+## HighCharts Licensing
+This code is not endorsed or created by HighCharts. HighCharts licenses apply to your usage of this code. Currently, HighCharts is free for non-commercial use and they have a number of paid options for commercial use. Please visit their website for more information.
+
 ### more charts coming soon
