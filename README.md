@@ -42,7 +42,7 @@ type <optional>: one of pie or donut (defaults to *pie*)
 **Example:**
 `/chart/pie?data=Male:29.9,Female:71.1&title=Demographics`
 
-![Example Pie Chart](example-pie.png)
+![Example Pie Chart](example-pie.png?bustcache)
 
 ## HighCharts Licensing
 This code is not endorsed or created by HighCharts. HighCharts licenses apply to your usage of this code. Currently, HighCharts is free for non-commercial use and they have a number of paid options for commercial use. Please visit their website for more information.
