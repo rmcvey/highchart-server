@@ -13,7 +13,6 @@ function sendFile(data, res){
       console.log(err)
     }
     res.sendFile(__dirname + '/' + fileName);
-    //res.json({ file: HOSTNAME + fileName.replace('tmp/', '/static/') });
   });
 }
 

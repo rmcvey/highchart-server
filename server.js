@@ -5,8 +5,8 @@ var request = require('request')
 var fs = require('fs')
 var bodyParser = require('body-parser')
 var spawn = require('child_process').spawn
-var port = 3004;
-var HOSTNAME = 'http://localhost:'+port;
+var PORT = 3004;
+var HOSTNAME = 'localhost';
 
 app.use( bodyParser.json() );
 app.use(bodyParser.urlencoded({
@@ -24,7 +24,7 @@ app.get('/', function(req, res){
 
 app.use('/chart', require('./chart-endpoints'));
 
-var server = app.listen(port, function () {
+var server = app.listen(PORT, function () {
   var host = server.address().address
   var port = server.address().port
 
