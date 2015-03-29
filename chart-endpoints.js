@@ -25,6 +25,10 @@ var chartServer = {
 };
 
 chartTypes.forEach(function(chartType){
+  /**
+   * Sets up endpoints for all chartTypes
+   * method names match up to endpoints 'line' => app.get('/line'...) => getLineChart
+   */
   app.get(`/${chartType}`, function(req, res){
     var cap   = chartType.charAt(0).toUpperCase() + chartType.substr(1),
         fn    = `get${cap}Chart`,
@@ -40,21 +44,5 @@ chartTypes.forEach(function(chartType){
     });
   });
 });
-/*
-app.get('/line', function (req, res) {
-  var query = req.query;
-  var chartUri = chart.getLineChart(query, query.cols, query.rows);
-  request.get({ uri: 'http://localhost:3003', qs: {data: chartUri}}, function(err, response, body){
-    sendFile(body, res);
-  });
-})
-
-app.get('/pie', function (req, res) {
-  var query = req.query;
-  var chartUri = chart.getPieChart(query, query.cols, query.rows);
-  request.get({ uri: 'http://localhost:3003', qs: {data: chartUri}}, function(err, response, body){    
-    sendFile(body, res);
-  });
-})*/
 
 module.exports = app;

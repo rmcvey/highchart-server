@@ -1,11 +1,24 @@
 // chart.js
+'use strict';
+var _ = require('lodash');
 
-var Chart = function(){}
-Chart.prototype = {
+class Chart {
+  constructor(){
+
+  }
   // default chart config
-  getChart: function(cols,rows){
-    cols = cols.split(',');
-    rows = rows.split(',');
+  getChart(cols,rows){
+    // expecting string values here, if cols & rows aren't arrays, convert them into them
+    if(cols && !_.isArray(cols)){
+      cols = cols.split(',');
+    } else {
+      cols = [];
+    }
+    if(rows && !_.isArray(rows)){
+      rows = rows.split(',');
+    } else {
+      rows = [];
+    }
 
     return {
       credits: {
@@ -23,14 +36,15 @@ Chart.prototype = {
         categories: cols },
       series: [ { data: rows } ]
     };
-  },
-  toRequestFormat: function(chart){
+  }
+  // turns the chart config into the object that highcharts-convert expects
+  toRequestFormat(chart){
     return JSON.stringify({
       infile: JSON.stringify(chart)
     })
-  },
+  }
   // overrides for line and area charts
-  getLineChart: function(query, cols, rows){
+  getLineChart(query, cols, rows){
     var chart = this.getChart(cols, rows);
     if(query.title){
       chart.title = { 
@@ -62,9 +76,9 @@ Chart.prototype = {
     }
     
     return this.toRequestFormat(chart);
-  },
+  }
   // overrides for pie and wedge charts
-  getPieChart: function(query, cols, rows){
+  getPieChart(query, cols, rows){
     var chart = this.getChart(cols, rows);
     if(query.title){
       chart.title = { 
@@ -83,6 +97,8 @@ Chart.prototype = {
       }
     }
 
+    // there's a tendency for the numerous levels of JSON encoding to stringify the numbers, which causes issues with HighCharts,
+    // map through the data values and convert them to floating point numbers
     var temp = chart.series[0];
     temp.type = 'pie';
     temp.name = 'Demographics';
