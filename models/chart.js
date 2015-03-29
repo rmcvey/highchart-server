@@ -7,17 +7,17 @@ class Chart {
 
   }
   // default chart config
-  getChart(cols,rows){
+  getChart(cols,data){
     // expecting string values here, if cols & rows aren't arrays, convert them into them
     if(cols && !_.isArray(cols)){
       cols = cols.split(',');
     } else {
       cols = [];
     }
-    if(rows && !_.isArray(rows)){
-      rows = rows.split(',');
+    if(data && !_.isArray(data)){
+      data = data.split(',');
     } else {
-      rows = [];
+      data = [];
     }
 
     return {
@@ -34,7 +34,7 @@ class Chart {
            }
         },
         categories: cols },
-      series: [ { data: rows } ]
+      series: [ { data: data } ]
     };
   }
   // turns the chart config into the object that highcharts-convert expects
@@ -44,8 +44,8 @@ class Chart {
     })
   }
   // overrides for line and area charts
-  getLineChart(query, cols, rows){
-    var chart = this.getChart(cols, rows);
+  getLineChart(query, cols, data){
+    var chart = this.getChart(cols, data);
     if(query.title){
       chart.title = { 
         text: query.title,
@@ -78,8 +78,8 @@ class Chart {
     return this.toRequestFormat(chart);
   }
   // overrides for pie and wedge charts
-  getPieChart(query, cols, rows){
-    var chart = this.getChart(cols, rows);
+  getPieChart(query, cols, data){
+    var chart = this.getChart(cols, data);
     if(query.title){
       chart.title = { 
         text: query.title,

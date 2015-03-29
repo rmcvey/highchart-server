@@ -11,9 +11,9 @@ Server runs on 3004, you are welcome to change this to whatever you'd like. Char
 
 ### Line & Area Charts
 The type parameter will change the chart type to line, area or arealine
-`/chart/line?rows=29.9,71.5,106.4&cols=Jan,Feb,Mar&title=Monthly%20Views&xName=Month&yName=Views&type=line`
+`/chart/line?data=29.9,71.5,106.4&cols=Jan,Feb,Mar&title=Monthly%20Views&xName=Month&yName=Views&type=line`
 
 ### Pie Charts
-`/chart/pie?rows=Male:29.9,Female:71.1&title=Demographics`
+`/chart/pie?data=Male:29.9,Female:71.1&title=Demographics`
 
 ## More charts coming soon

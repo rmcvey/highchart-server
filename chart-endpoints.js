@@ -34,7 +34,7 @@ chartTypes.forEach(function(chartType){
         fn    = `get${cap}Chart`,
         query = req.query;
 
-    var chartConfig = chart[fn](query, query.cols, query.rows);
+    var chartConfig = chart[fn](query, query.cols, query.data);
     chartServer.qs = { data: chartConfig };
     request.get(chartServer, function(err, response, body){
       if(err){
