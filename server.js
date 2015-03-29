@@ -1,19 +1,27 @@
-// pngpng
-var express = require('express')
-var app = express()
-var request = require('request')
-var fs = require('fs')
-var bodyParser = require('body-parser')
-var spawn = require('child_process').spawn
-var PORT = 3004;
-var HOSTNAME = 'localhost';
+// required packages
+var express      = require('express');
+var app          = express();
+var bodyParser   = require('body-parser');
+var spawn        = require('child_process').spawn
+// constants, change these to suit your needs
+var PORT         = 3004;
+var HC_PORT      = 3003;
+var HOSTNAME     = 'localhost';
+var ENV          = 'development';
 
-app.use( bodyParser.json() );
+app.set('port', PORT);
+app.set('env', ENV);
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 // serve static files if requested directly
 app.use('/static', express.static(__dirname + '/tmp'));
+// setup error handler if we are running in dev
+if ('development' == app.get('env')) {
+  app.use(require('errorhandler')());
+}
+// remove express' default JSON formatting
 app.set('json spaces', 0);
 
 app.get('/', function(req, res){
@@ -28,14 +36,16 @@ var server = app.listen(PORT, function () {
   var host = server.address().address
   var port = server.address().port
 
-  console.log('Chart server listening at http://%s:%s', host, port)
-
-  var hc_convert = spawn('phantomjs', ['highcharts-scripts/highcharts-convert.js', '-host', '127.0.0.1', '-port', '3003'], { cwd: __dirname });
+  // spawn highchart-convert server
+  var hc_convert = spawn('phantomjs', ['highcharts-scripts/highcharts-convert.js', '-host', '127.0.0.1', '-port', HC_PORT], { cwd: __dirname });
+  
   hc_convert.stdout.on('data', function (data) {
     console.log('highcharts_convert DEBUG: ' + data);
   });
-
+  // highchart error listener
   hc_convert.stderr.on('data', function (data) {
     console.log('highcharts_convert ERROR: ' + data);
   });
+
+  console.log('Chart server listening at http://%s:%s', host, port)
 });

@@ -6,6 +6,11 @@ var fs      = require('fs');
 
 'use strict';
 
+/**
+ * Writes file to disk and serves the image file
+ * @param  {base64 data} data
+ * @param  {express res object} res
+ */
 function sendFile(data, res){
   var fileName = 'tmp/'+ Math.floor(Math.random() * 10000) + data.slice(10, 32) + '.png'
   fs.writeFile(fileName, data, {encoding: 'base64'}, function(err){
