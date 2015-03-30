@@ -6,12 +6,10 @@ var spawn        = require('child_process').spawn
 // constants, change these to suit your needs
 var PORT         = 3004;
 var HC_PORT      = 3003;
-var HOSTNAME     = 'localhost';
 var ENV          = 'development';
 
 app.set('port', PORT);
 app.set('env', ENV);
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
@@ -30,7 +28,7 @@ app.get('/', function(req, res){
   });
 });
 
-app.use('/chart', require('./chart-endpoints'));
+app.use('/chart', require('./chart-endpoints')(HC_PORT));
 
 var server = app.listen(PORT, function () {
   var host = server.address().address

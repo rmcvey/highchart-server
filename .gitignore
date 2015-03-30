@@ -1,2 +1,2 @@
-tmp/*
+tmp/*.png
 node_modules/*
