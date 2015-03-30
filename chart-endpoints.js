@@ -45,9 +45,9 @@ var bootstrap = function(PORT){
      * Sets up endpoints for all chartTypes
      * method names match up to endpoints 'line' => app.get('/line'...) => getLineChart
      */
-    app.get(`/${chartType}`, function(req, res){
+    app.get('/'+chartType, function(req, res){
       var cap   = chartType.charAt(0).toUpperCase() + chartType.substr(1),
-          fn    = `get${cap}Chart`,
+          fn    = ['get', cap, 'Chart'].join(''),
           query = req.query;
 
       var chartConfig = chart[fn](query, query.cols, query.data);
