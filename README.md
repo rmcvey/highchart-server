@@ -1,13 +1,8 @@
 ## Getting Started
-This project is using ES6 classes, so you will need iojs with the --harmony_classes flag (for now)
 ```
 git clone git@github.com:rmcvey/highchart-server.git
 npm install
-iojs --harmony_classes server.js
-```
-Optionally, if you use [nodemon](https://github.com/remy/nodemon) the server is configured to run iojs with the `--harmony_classes` flag automatically and you can launch using:
-```
-nodemon server.js
+node server.js
 ```
 ## Usage
 Server runs on port 3004, you are welcome to change this to whatever you'd like.  Charts are generated on the server and are served as png files directly from endpoint requests (though they can also be accessed as static files).

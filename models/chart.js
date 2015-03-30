@@ -2,12 +2,10 @@
 'use strict';
 var _ = require('lodash');
 
-class Chart {
-  constructor(){
-
-  }
+var Chart = function(){}
+Chart.prototype = {
   // default chart config
-  getChart(cols,data){
+  getChart: function(cols,data){
     // expecting string values here, if cols & rows aren't arrays, convert them into them
     if(cols && !_.isArray(cols)){
       cols = cols.split(',');
@@ -36,15 +34,15 @@ class Chart {
         categories: cols },
       series: [ { data: data } ]
     };
-  }
+  },
   // turns the chart config into the object that highcharts-convert expects
-  toRequestFormat(chart){
+  toRequestFormat: function(chart){
     return JSON.stringify({
       infile: JSON.stringify(chart)
     })
-  }
+  },
   // overrides for line and area charts
-  getLineChart(query, cols, data){
+  getLineChart: function(query, cols, data){
     var chart = this.getChart(cols, data);
     if(query.title){
       chart.title = { 
@@ -76,9 +74,9 @@ class Chart {
     }
     
     return this.toRequestFormat(chart);
-  }
+  },
   // overrides for pie and wedge charts
-  getPieChart(query, cols, data){
+  getPieChart: function(query, cols, data){
     var chart = this.getChart(cols, data);
     if(query.title){
       chart.title = { 

@@ -1,5 +1,0 @@
-{
-  "execMap": {
-    "js": "iojs --harmony_classes"
-  }
-}

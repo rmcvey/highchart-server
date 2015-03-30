@@ -492,7 +492,6 @@
 					// load necessary libraries
 					for (jsfile in config.files) {
 						if (config.files.hasOwnProperty(jsfile)) {
-							console.log('highcharts-scripts/'+config.files[jsfile]);
 							page.injectJs('highcharts-scripts/'+config.files[jsfile]);	
 						}
 					}
@@ -535,7 +534,7 @@
 				try {
 					params = JSON.parse(def.data);
 					params.infile = params.infile.replace(/"([0-9\.]+)"/g, '$1')
-					console.log(params.infile);
+
 					if (params.status) {
 						// for server health validation
 						response.statusCode = 200;
