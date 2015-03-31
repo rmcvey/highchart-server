@@ -23,12 +23,13 @@ Chart.prototype = {
         enabled: false
       },
       chart: { style: {
-        color: '#999999',
+        color: '#000000',
       }},
       xAxis: { 
         labels: {
+          rotation: -45,
            style: {
-              color: '#999999'
+              color: '#000000'
            }
         },
         categories: cols },
@@ -48,7 +49,7 @@ Chart.prototype = {
       chart.title = { 
         text: query.title,
         style: {
-          color: '#999999'
+          color: '#000000'
         }
       }
     }
@@ -82,7 +83,7 @@ Chart.prototype = {
       chart.title = { 
         text: query.title,
         style: {
-          color: '#999999'
+          color: '#000000'
         }
       }
     }
@@ -102,7 +103,7 @@ Chart.prototype = {
     temp.name = 'Demographics';
     temp.data = temp.data.map(function(item){
       var t = item.split(':');
-      return [t[0], parseFloat(t[1])];
+      return [decodeURIComponent(t[0]), parseFloat(t[1])];
     });
     chart.series[0] = temp;
 
